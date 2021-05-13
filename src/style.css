@@ -59,8 +59,7 @@
   --color-text: #2e353f;
   --color-text-light: #4f5969;
   --color-heading: #1a202c;
-  /* --color-heading-black: black; */
-  --color-heading-black: #ff9800;
+  --color-heading-orange: #ff9800;
   --color-accent: #d1dce5;
 }
 
@@ -122,7 +121,7 @@ h6 {
 h1 {
   font-weight: var(--fontWeight-black);
   font-size: var(--fontSize-6);
-  color: var(--color-heading-black);
+  color: var(--color-heading-orange);
 }
 
 h2 {
@@ -263,7 +262,7 @@ a:focus {
 
 .post-list-item {
   margin-bottom: var(--spacing-8);
-  margin-top: var(--spacing-8);
+  margin-top: var(--spacing-5);
 }
 
 .post-list-item p {
@@ -275,10 +274,22 @@ a:focus {
   color: var(--color-primary);
   margin-bottom: var(--spacing-2);
   margin-top: var(--spacing-0);
+  display: inline-block;
 }
 
 .post-list-item header {
   margin-bottom: var(--spacing-4);
+  background: #4b9aaf10;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.post-list-item header:hover {
+  background: #4b9aaf18;
+}
+
+.post-list-item a {
+  text-decoration: none;
 }
 
 .header-link-home {
@@ -313,8 +324,19 @@ a:focus {
   font-family: var(--font-heading);
 }
 
-.blog-post-nav ul {
-  margin: var(--spacing-0);
+.blog-post header h3 {
+  margin: 0  0 1.4rem 0;
+  font-weight: 400;
+}
+
+.blog-post-header-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.book-year {
+  font-size: var(--fontSize-1);
+  font-family: var(--font-heading); 
 }
 
 .gatsby-highlight {
@@ -322,7 +344,7 @@ a:focus {
 }
 
 .brand {
-  color: var(--color-heading-black);
+  color: var(--color-heading-orange);
 }
 
 .nav {

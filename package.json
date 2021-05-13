@@ -1,13 +1,14 @@
 {
-  "name": "glance",
+  "name": "book-droplets",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "an open blog that you can look up the first paragraph of any book provided by book lovers.",
   "version": "0.1.0",
   "author": "John Raptis",
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "dependencies": {
+    "fuse.js": "^6.4.6",
     "gatsby": "^3.4.1",
     "gatsby-plugin-feed": "^3.4.0",
     "gatsby-plugin-gatsby-cloud": "^2.4.1",

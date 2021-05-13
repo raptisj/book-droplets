@@ -1,12 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: `Glance`,
+    title: `Book Droplets`,
     author: {
       name: `John Raptis`,
-      summary: `an open-source blog that you can look up the first paragraph of any book provided by the community.`,
+      summary: `an open blog that you can look up the first paragraph of any book provided by book lovers.`,
     },
     description: ``,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    siteUrl: `https://bookdroplets.io/`,
     social: {
       twitter: ``,
     },
@@ -112,13 +112,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Book Droplets`,
+        short_name: `Book Droplets`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/drop.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-react-helmet`,

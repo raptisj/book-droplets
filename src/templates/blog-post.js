@@ -21,13 +21,20 @@ const BlogPostTemplate = ({ data, location }) => {
         itemType="http://schema.org/Article"
       >
         <header>
-          {post.frontmatter.categories.map((category, i) => (
-            <React.Fragment key={i}>
-              <span className="post-tags">{category}</span>
-              {i < post.frontmatter.categories.length - 1 && ', '}
-            </React.Fragment>
-          ))}
+          <div className="blog-post-header-top">
+            <div>
+              {post.frontmatter.categories.map((category, i) => (
+                <React.Fragment key={i}>
+                  <span className="post-tags">{category}</span>
+                  {i < post.frontmatter.categories.length - 1 && ', '}
+                </React.Fragment>
+              ))}
+            </div>
+
+            <span className="book-year">{post.frontmatter.year}</span>
+          </div>
           <h1 itemProp="headline">{post.frontmatter.title}</h1>
+          <h3>{post.frontmatter.subtitle}</h3>
           <p>by {post.frontmatter.author}</p>
         </header>
         <section
@@ -61,7 +68,9 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+        subtitle
         date(formatString: "MMMM DD, YYYY")
+        year
         description
         categories
         author
