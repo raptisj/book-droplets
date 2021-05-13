@@ -32,7 +32,11 @@ const Bio = () => {
   return (
     <div className="bio">
       {author?.name && (
-        <p><strong className="brand">Book Droplets</strong> is {author?.summary || null}</p>
+        <div>
+          <p><strong className="brand">Book Droplets</strong> is {author?.summary || null}</p>
+          <br />
+          <p>To submit a book paragraph fill <a href="https://forms.gle/94nd9fHGUuv1n9JBA" target="_blank">this form</a>.</p>
+        </div>
       )}
     </div>
   )
