@@ -2,6 +2,7 @@
 title: Scattered Minds
 subtitle: The Origins and Healing of Attention Deficit Disorder
 date: "2021-05-11"
+publication_date: "1999"
 year: "1999"
 author: Gabor Mate
 categories: ["psychology", "philosophy"]

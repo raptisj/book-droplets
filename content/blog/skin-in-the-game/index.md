@@ -2,6 +2,7 @@
 title: Skin in the Game
 subtitle: Hidden Asymmetries in Daily Life
 date: "2021-05-11"
+publication_date: "2018"
 year: "2018"
 author: Nassim Nicholas Taleb
 categories: ["philosophy", "non-fiction"]

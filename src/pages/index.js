@@ -19,7 +19,6 @@ const BlogIndex = ({ data, location }) => {
   const [query, setQuery] = useState(defaultQuery)
   const [activeTag, setActiveTag] = useState(defaultTagQuery)
   const [searchedPosts, setSearchedPosts] = useState(posts)
-  const [filteredPosts, setFilteredPosts] = useState(posts)
 
   const fuse = new Fuse(posts, {
     keys: ["frontmatter.title", "frontmatter.author"], threshold: 0.3,
