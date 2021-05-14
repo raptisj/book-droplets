@@ -4,6 +4,7 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+// import { categories } from '../constants'
 // import openBook from '../images/open-book.svg'
 
 import { navigate, useLocation } from "@reach/router"
@@ -18,6 +19,7 @@ const BlogIndex = ({ data, location }) => {
   const [query, setQuery] = useState(defaultQuery)
   const [activeTag, setActiveTag] = useState(defaultTagQuery)
   const [searchedPosts, setSearchedPosts] = useState(posts)
+  const [filteredPosts, setFilteredPosts] = useState(posts)
 
   const fuse = new Fuse(posts, {
     keys: ["frontmatter.title", "frontmatter.author"], threshold: 0.3,
@@ -40,16 +42,16 @@ const BlogIndex = ({ data, location }) => {
     navigate(query ? `?${params}` : '/', { replace: true })
 
     const newPosts = filterPosts(query)
-
+ 
     setSearchedPosts(newPosts)
   }, [query])
-
+  
   const onChange = event => {
     setQuery(event.target.value)
   }
-
+  
   const tagSet = new Set()
-
+  
   searchedPosts.forEach(post => {
     if (post.frontmatter.categories) {
       post.frontmatter.categories.forEach((category) => {
@@ -57,19 +59,21 @@ const BlogIndex = ({ data, location }) => {
       })
     }
   })
-
+  
   const tagList = Array.from(tagSet)
-  console.log(location)
-
+  
   const filterByTag = (tag) => {
-    setActiveTag(tag)
+      setActiveTag(tag)
+      
+      params[tag !== 'all' ? 'set' : 'delete']("tag", tag)
+      navigate(tag !== 'all' ? `?${params}` : '/', { replace: true })
+      
+      const newPosts = searchedPosts.filter(post => post.frontmatter.categories.includes(tag))
 
-    params[tag !== 'all' ? 'set' : 'delete']("tag", tag)
-    navigate(tag !== 'all' ? `?${params}` : '/', { replace: true })
+      setSearchedPosts(tag === 'all' ? posts : newPosts)
+      setQuery(tag === 'all' ? '' : query)
 
-    const newPosts = searchedPosts.filter(post => post.frontmatter.categories.includes(tag))
-    setSearchedPosts(tag === 'all' ? posts : newPosts)
-    // setQuery(tag === 'all' ? '' : query)
+    return newPosts
   }
 
   return (
