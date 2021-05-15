@@ -413,8 +413,19 @@ a:focus {
   display: inline-block;
 }
 
-.tags-menu span.active {
+.tags-menu span.active,
+.tags-menu span.active:hover {
   background: var(--color-primary);
+}
+
+.tags-menu span:hover {
+  background: #f3950a;
+}
+
+.tags-menu span.clear,
+.tags-menu span.clear.active,
+.tags-menu span.clear:hover {
+  background: #ce9b51;
 }
 /* Media queries */
 

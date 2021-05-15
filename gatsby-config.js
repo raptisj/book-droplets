@@ -5,7 +5,7 @@ module.exports = {
       name: `John Raptis`,
       summary: `an open blog that you can look up the first paragraph of any book provided by book lovers.`,
     },
-    description: ``,
+    description: `An open blog that you can look up the first paragraph of any book provided by book lovers.`,
     siteUrl: `https://bookdroplets.com/`,
     social: {
       twitter: ``,

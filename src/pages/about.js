@@ -11,6 +11,7 @@ const About = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <Seo title="About" />
+
       <h1>
         About Book Droplets
       </h1>

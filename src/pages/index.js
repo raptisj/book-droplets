@@ -38,19 +38,29 @@ const BlogIndex = ({ data, location }) => {
 
   useEffect(() => {
     params[query ? 'set' : 'delete']("search", query)
-    navigate(query ? `?${params}` : '/', { replace: true })
+    params[activeTag ? 'set' : 'delete']("tag", activeTag)
+    navigate(query || activeTag ? `?${params}` : '/', { replace: true })
 
-    const newPosts = filterPosts(query)
- 
+    let newPosts = filterPosts(query)
+  
+    if (activeTag) {
+      const newTags = filterByTag(activeTag)
+      
+      // if there is no search query while there is an active tag, only posts with tag should be visible 
+      if (!query) {
+        newPosts = newTags
+      }
+    }
+
     setSearchedPosts(newPosts)
   }, [query])
-  
+
   const onChange = event => {
     setQuery(event.target.value)
   }
-  
+
   const tagSet = new Set()
-  
+
   searchedPosts.forEach(post => {
     if (post.frontmatter.categories) {
       post.frontmatter.categories.forEach((category) => {
@@ -58,26 +68,26 @@ const BlogIndex = ({ data, location }) => {
       })
     }
   })
-  
-  const tagList = Array.from(tagSet)
-  
-  const filterByTag = (tag) => {
-      setActiveTag(tag)
-      
-      params[tag !== 'all' ? 'set' : 'delete']("tag", tag)
-      navigate(tag !== 'all' ? `?${params}` : '/', { replace: true })
-      
-      const newPosts = searchedPosts.filter(post => post.frontmatter.categories.includes(tag))
 
-      setSearchedPosts(tag === 'all' ? posts : newPosts)
-      setQuery(tag === 'all' ? '' : query)
+  const tagList = Array.from(tagSet)
+
+  const filterByTag = (tag) => {
+    setActiveTag(tag)
+
+    params[tag ? 'set' : 'delete']("tag", tag)
+    navigate(tag ? `?${params}` : '/', { replace: true })
+
+    const newPosts = searchedPosts.filter(post => post.frontmatter.categories.includes(tag))
+
+    setSearchedPosts(!tag ? posts : newPosts)
+    setQuery(!tag ? '' : query)
 
     return newPosts
   }
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo title="Home" />
+      <Seo />
       <Bio />
 
       {/* <img src={openBook} alt="reading book" className="opening-image" /> */}
@@ -90,8 +100,7 @@ const BlogIndex = ({ data, location }) => {
       />
 
       <div className="tags-menu">
-        {tagList.length > 0 &&
-          <span className={activeTag === 'all' ? 'active' : ''} onClick={() => filterByTag('all')}>all</span>}
+        <span className={!activeTag ? 'clear active' : 'clear'} onClick={() => filterByTag('')}>clear filters</span>
 
         {tagList.map((tag) => (
           <span className={activeTag === tag ? 'active' : ''} key={tag} onClick={() => filterByTag(tag)}>{tag}</span>

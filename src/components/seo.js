@@ -28,19 +28,24 @@ const Seo = ({ description, lang, meta, title }) => {
     `
   )
 
-  const metaImage = `${site.siteMetadata.siteUrl}/drop100.png`
 
+  const metaImage = `${site.siteMetadata.siteUrl}/drop100.png`
+  
   const metaDescription = description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata?.title
+  const defaultTitle = `${title ? title + " | " : ""}${site.siteMetadata?.title}`
 
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
-      title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+      title={defaultTitle}
+      // titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
       meta={[
+        {
+          name: `title`,
+          content: title,
+        },
         {
           name: `image`,
           content: metaImage,
@@ -100,7 +105,7 @@ Seo.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 }
 
 export default Seo
