@@ -6,7 +6,7 @@ module.exports = {
       summary: `an open blog that you can look up the first paragraph of any book provided by book lovers.`,
     },
     description: ``,
-    siteUrl: `https://bookdroplets.io/`,
+    siteUrl: `https://bookdroplets.com/`,
     social: {
       twitter: ``,
     },
