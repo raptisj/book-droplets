@@ -27,6 +27,8 @@ newBooks.forEach(book => {
   const toKebabCase = makeKebab(book.title)
   const directory = `./content2/${toKebabCase}`
 
+  if (fs.existsSync(directory)) return
+
   fs.mkdirSync(directory);
 
   const createStream = fs.createWriteStream(`${directory}/index.md`);

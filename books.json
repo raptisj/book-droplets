@@ -1,6 +1,6 @@
 [
   {
-    "checked": true,
+    "checked": "TRUE",
     "created_at": "12/05/2021 12:18:12 π.μ.",
     "title": "The Beginning of Infinity",
     "subtitle": "Explanations that Transform the World",
@@ -11,4 +11,4 @@
     "complementary_genre": "science",
     "genre_recommendation": ""
   }
- ]
+]
