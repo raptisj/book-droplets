@@ -116,7 +116,7 @@ module.exports = {
         short_name: `Book Droplets`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#663399`,
+        theme_color: `#ff9800`,
         display: `minimal-ui`,
         icon: `src/images/drop.png`, // This path is relative to the root of the site.
       },

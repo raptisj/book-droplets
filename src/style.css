@@ -61,6 +61,8 @@
   --color-heading: #1a202c;
   --color-heading-orange: #ff9800;
   --color-accent: #d1dce5;
+  /* --color-subheading-dark: #b9b4b0; */
+  --color-subheading-dark: #737373;
 }
 
 /* HTML elements */
@@ -241,14 +243,35 @@ a:focus {
 
 /* Custom classes */
 
+.light {
+  background: #fff;
+  transition: all 0.3s;
+}
+
+.dark {
+  background: #020101;
+  transition: all 0.3s;
+}
+
+.dark h3 {
+  color: var(--color-subheading-dark);
+}
+
+.dark p {
+  color: #fff;
+}
+
 .global-wrapper {
-  margin: var(--spacing-0) auto;
-  max-width: var(--maxWidth-wrapper);
   padding: var(--spacing-10) var(--spacing-5);
 }
 
 .global-wrapper[data-is-root-path="true"] .bio {
   margin-bottom: var(--spacing-20);
+}
+
+.container {
+  margin: var(--spacing-0) auto;
+  max-width: var(--maxWidth-wrapper);
 }
 
 .global-header {
@@ -325,7 +348,7 @@ a:focus {
 }
 
 .blog-post header h3 {
-  margin: 0  0 1.4rem 0;
+  margin: 0 0 1.4rem 0;
   font-weight: 400;
 }
 
@@ -336,7 +359,11 @@ a:focus {
 
 .book-year {
   font-size: var(--fontSize-1);
-  font-family: var(--font-heading); 
+  font-family: var(--font-heading);
+}
+
+.dark .book-year {
+  color: var(--color-subheading-dark);
 }
 
 .gatsby-highlight {
@@ -350,9 +377,9 @@ a:focus {
 .nav {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
   border-bottom: 1px solid #cbd5e0;
   padding-bottom: 1rem;
+  align-items: flex-end;
 }
 
 .post-tags {
@@ -361,6 +388,10 @@ a:focus {
   font-style: italic;
   margin-bottom: 0.5rem;
   display: inline-block;
+}
+
+.dark .post-tags {
+  color: var(--color-subheading-dark);
 }
 
 .excerpt {
@@ -392,6 +423,16 @@ a:focus {
   outline: none;
   border-color: #ff9800;
   box-shadow: 3px 3px 0 #ff9800;
+}
+
+.dark .search-input {
+  background: #151a1b;
+  color: #4a9aae;
+}
+
+.dark .search-input:focus {
+  border-color: #4a9aae;
+  box-shadow: 3px 3px 0 #4a9aae;
 }
 
 .tags-menu {
@@ -427,6 +468,24 @@ a:focus {
 .tags-menu span.clear:hover {
   background: #ce9b51;
 }
+
+.sub-nav {
+  margin-top: 1rem;
+  display: flex;
+  width: auto;
+  justify-content: inherit;
+}
+
+.sub-nav-root {
+  margin-top: 1rem;
+  display: flex;
+  width: auto;
+  justify-content: inherit;
+}
+
+.toggler {
+  margin-left: 0.5rem;
+}
 /* Media queries */
 
 @media (max-width: 42rem) {
@@ -437,5 +496,17 @@ a:focus {
   ul,
   ol {
     list-style-position: inside;
+  }
+
+  .home {
+    flex-direction: column;
+  }
+
+  .sub-nav-root {
+    width: 100%;
+  }
+
+  .nav {
+    align-items: baseline;
   }
 }

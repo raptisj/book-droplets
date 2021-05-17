@@ -4,8 +4,6 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-// import { categories } from '../constants'
-// import openBook from '../images/open-book.svg'
 
 import { navigate, useLocation } from "@reach/router"
 import Fuse from "fuse.js"
@@ -19,7 +17,7 @@ const BlogIndex = ({ data, location }) => {
   const [query, setQuery] = useState(defaultQuery)
   const [activeTag, setActiveTag] = useState(defaultTagQuery)
   const [searchedPosts, setSearchedPosts] = useState(posts)
-
+  
   const fuse = new Fuse(posts, {
     keys: ["frontmatter.title", "frontmatter.author"], threshold: 0.3,
   })
@@ -108,7 +106,7 @@ const BlogIndex = ({ data, location }) => {
       </div>
 
       {searchedPosts.length === 0 && (
-        <i><h3>No book found</h3></i>
+        <i><h3>No books found</h3></i>
       )}
 
       <ol style={{ listStyle: `none` }}>
