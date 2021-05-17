@@ -21,6 +21,7 @@ const Layout = ({ location, title, children }) => {
     setTheme(localStorage.getItem('theme'))
   }
 
+  console.log(theme, 'theme')
   if (isRootPath) {
     header = (
       <div className="nav home">
