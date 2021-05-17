@@ -485,6 +485,7 @@ a:focus {
 
 .toggler {
   margin-left: 0.5rem;
+  cursor: pointer;
 }
 /* Media queries */
 

@@ -18,7 +18,7 @@ const Layout = ({ location, title, children }) => {
 
   const changeTheme = () => {
     localStorage.setItem('theme', theme === 'light' ? 'dark' : 'light')
-    setTheme(localStorage.getItem('theme'))
+    setTheme(theme === 'light' ? 'dark' : 'light')
   }
 
   if (isRootPath) {
