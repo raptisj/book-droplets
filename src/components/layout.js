@@ -8,7 +8,7 @@ const Layout = ({ location, title, children }) => {
   const isRootPath = location.pathname === rootPath
   let header
 
-  const [theme, setTheme] = React.useState(typeof window !== 'undefined' && localStorage.getItem('theme'))
+  const [theme, setTheme] = React.useState(typeof window !== 'undefined' && localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light')
 
 
   if (theme === null) {
