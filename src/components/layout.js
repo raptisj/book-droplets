@@ -21,7 +21,6 @@ const Layout = ({ location, title, children }) => {
     setTheme(localStorage.getItem('theme'))
   }
 
-  console.log(theme, 'theme')
   if (isRootPath) {
     header = (
       <div className="nav home">
@@ -56,7 +55,7 @@ const Layout = ({ location, title, children }) => {
   }
 
   return (
-    <div className={`${theme === "light" ? "light" : "dark"} global-wrapper`} data-is-root-path={isRootPath}>
+    <div className={`${theme} global-wrapper`} data-is-root-path={isRootPath}>
       <div className="container">
         <header className="global-header">{header}</header>
         <main>{children}</main>
