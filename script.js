@@ -1,8 +1,29 @@
 const fs = require("fs")
+const rimraf = require("rimraf");
 const { render } = require("mustache")
 const books = require('./books.json')
 
-const newBooks = [...books]
+// filter empty fields
+const newBooks = [...books].filter(book => book.title !== "")
+
+const bookPath = './books.json'
+const contentPath = './content'
+
+// delete json file
+if (fs.existsSync(bookPath)) {
+  fs.unlinkSync(bookPath)
+}
+
+// delete content folder with all the posts
+rimraf.sync(contentPath);
+
+// create empty content folder to be populated later on
+if (!fs.existsSync(contentPath)){
+  fs.mkdirSync(contentPath);
+}
+
+// repopulate json file
+fs.writeFileSync(bookPath, JSON.stringify(newBooks))
 
 const getDate = (date) => date.split(' ').shift().split('/').reverse().join('-')
 
@@ -23,16 +44,16 @@ newBooks.forEach(book => {
   }
 
   const output = render(template, realBook)
-
+  
   const toKebabCase = makeKebab(book.title)
-  const directory = `./content2/${toKebabCase}`
-
-  if (fs.existsSync(directory)) return
-
+  const directory = `./content/${toKebabCase}`
+  
+  if (fs.existsSync(directory) || book.title === "") return
+  
   fs.mkdirSync(directory);
-
+  
   const createStream = fs.createWriteStream(`${directory}/index.md`);
   createStream.end();
-
+  
   fs.writeFileSync(`${directory}/index.md`, output)
 })

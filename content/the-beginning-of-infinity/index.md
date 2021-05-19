@@ -1,7 +1,7 @@
 ---
 title: The Beginning of Infinity
 subtitle: Explanations that Transform the World
-date: "2021-05-12"
+date: "2021-05-19"
 publication_date: "2011"
 year: "2011"
 author: David Deutsch

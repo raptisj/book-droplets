@@ -11,13 +11,14 @@ import Fuse from "fuse.js"
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
+  const totalCount = data.allMarkdownRemark.totalCount
   const params = new URLSearchParams(location.search)
   const defaultQuery = params.get("search") || ""
   const defaultTagQuery = params.get("tag") || ""
   const [query, setQuery] = useState(defaultQuery)
   const [activeTag, setActiveTag] = useState(defaultTagQuery)
   const [searchedPosts, setSearchedPosts] = useState(posts)
-  
+
   const fuse = new Fuse(posts, {
     keys: ["frontmatter.title", "frontmatter.author"], threshold: 0.3,
   })
@@ -62,7 +63,9 @@ const BlogIndex = ({ data, location }) => {
   searchedPosts.forEach(post => {
     if (post.frontmatter.categories) {
       post.frontmatter.categories.forEach((category) => {
-        tagSet.add(category)
+        if (category) {
+          tagSet.add(category)
+        }
       })
     }
   })
@@ -148,6 +151,7 @@ export const pageQuery = graphql`
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      totalCount
       nodes {
         excerpt
         fields {

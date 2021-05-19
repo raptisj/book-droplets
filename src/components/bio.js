@@ -34,7 +34,7 @@ const Bio = () => {
         <div>
           <p><strong className="brand">Book Droplets</strong> is {author?.summary || null}</p>
           <br />
-          <p>To submit a book paragraph fill <a href="https://forms.gle/94nd9fHGUuv1n9JBA" target="_blank">this form</a>.</p>
+          <p>To submit a book paragraph fill <a href="https://forms.gle/kBSSPeHcq357KjsPA" target="_blank">this form</a>.</p>
         </div>
       )}
     </div>

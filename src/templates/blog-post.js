@@ -34,10 +34,10 @@ const BlogPostTemplate = ({ data, location }) => {
         <header>
           <div className="blog-post-header-top">
             <div>
-              {categoryList.map((category, i) => (
+              {categoryList.filter(Boolean).map((category, i) => (
                 <React.Fragment key={i}>
                   <span className="post-tags">{category}</span>
-                  {i < categories.length - 1 && categoryList.length > 1 && ', '}
+                  {i < categories.length - 1 && categoryList.length > 1 && categoryList[0] !== "" && categoryList[1] !== "" && ', '}
                 </React.Fragment>
               ))}
             </div>

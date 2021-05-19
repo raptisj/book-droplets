@@ -18,7 +18,7 @@ const About = ({ data, location }) => {
 
       <p><span className="brand">Book Droplets</span> is an open blog that you can look up the first paragraph of any book provided by book lovers.</p>
 
-      {/* <p>To submit a book paragraph fill <a href="https://forms.gle/94nd9fHGUuv1n9JBA" target="_blank">this form</a>.</p> */}
+      {/* <p>To submit a book paragraph fill <a href="https://forms.gle/kBSSPeHcq357KjsPA" target="_blank">this form</a>.</p> */}
 
       <h3>Why</h3>
 
