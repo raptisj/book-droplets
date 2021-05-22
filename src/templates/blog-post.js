@@ -9,17 +9,24 @@ const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const categories = post.frontmatter.categories
+  const genreRecommendation = post.frontmatter.genre_recommendation
 
   const categorySet = new Set()
 
   if (categories) {
     categories.forEach((category) => {
-      categorySet.add(category)
+      if (category === 'other') {
+        categorySet.add(genreRecommendation)
+      }
+
+      if (category !== 'other') {
+        categorySet.add(category)
+      }
     })
   }
 
   const categoryList = Array.from(categorySet)
-  
+
   return (
     <Layout location={location} title={siteTitle}>
       <Seo
@@ -53,6 +60,9 @@ const BlogPostTemplate = ({ data, location }) => {
           itemProp="articleBody"
           className="excerpt"
         />
+
+        {post.frontmatter.goodreads_link && <a href={decodeURIComponent(post.frontmatter.goodreads_link)} target="_blank">on Goodreads</a>}
+        
         <hr />
         <footer>
           <Bio />
@@ -82,11 +92,13 @@ export const pageQuery = graphql`
         subtitle
         date(formatString: "MMMM DD, YYYY")
         publication_date
-        year
         description
         categories
+        genre_recommendation
         author
+        goodreads_link
       }
     }
   }
-`
+  `
+  

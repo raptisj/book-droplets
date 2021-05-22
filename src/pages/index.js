@@ -63,7 +63,7 @@ const BlogIndex = ({ data, location }) => {
   searchedPosts.forEach(post => {
     if (post.frontmatter.categories) {
       post.frontmatter.categories.forEach((category) => {
-        if (category) {
+        if (category && category !== 'other')  {
           tagSet.add(category)
         }
       })
@@ -114,7 +114,6 @@ const BlogIndex = ({ data, location }) => {
 
       <ol style={{ listStyle: `none` }}>
         {searchedPosts.map(post => {
-          const title = post.frontmatter.title || post.fields.slug
 
           return (
             <li key={post.fields.slug}>
@@ -126,7 +125,7 @@ const BlogIndex = ({ data, location }) => {
                 <Link to={post.fields.slug} itemProp="url">
                   <header>
                     <h2>
-                      <span itemProp="headline">{title}</span>
+                      <span itemProp="headline">{post.frontmatter.title}</span>
                     </h2>
                     <br />
                     <p>{post.frontmatter.author}</p>

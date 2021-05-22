@@ -40,20 +40,24 @@ newBooks.forEach(book => {
   const realBook = {
     ...book,
     publication_date: getYear(book.publication_date),
-    created_at: getDate(book.created_at)
+    created_at: getDate(book.created_at),
+    goodreads_link: encodeURIComponent(book.goodreads_link),
   }
 
   const output = render(template, realBook)
-  
   const toKebabCase = makeKebab(book.title)
   const directory = `./content/${toKebabCase}`
   
-  if (fs.existsSync(directory) || book.title === "") return
+  if (fs.existsSync(directory)) return
   
   fs.mkdirSync(directory);
   
-  const createStream = fs.createWriteStream(`${directory}/index.md`);
-  createStream.end();
+  // const createStream = fs.createWriteStream(`${directory}/index.md`);
+  // createStream.end();
   
+  // console.log(directory)
   fs.writeFileSync(`${directory}/index.md`, output)
+
+  // setTimeout(() => {
+  // }, 6000)
 })
