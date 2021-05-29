@@ -3,8 +3,34 @@ const rimraf = require("rimraf");
 const { render } = require("mustache")
 const books = require('./books.json')
 
+const replacements = {
+  'Χρονική σήμανση': 'created_at',
+  'Title': 'title',
+  'Subtitle': 'subtitle',
+  'Author': 'author',
+  'Publication date': 'publication_date',
+  'Genre': 'genre',
+  'Complementary genre': 'complementary_genre',
+  'Genre Recommendation': 'genre_recommendation',
+  'Excerpt': 'excerpt',
+  'Goodreads Link': 'goodreads_link',
+};
+
+
+const formatBookKeys = books.map(book => {
+  
+  let replacedItems = Object.keys(book).map((key) => {
+    const newKey = replacements[key] || key;
+    return { [newKey] : book[key] };
+  });
+  
+  const newTab = replacedItems.reduce((a, b) => Object.assign({}, a, b));
+  
+  return newTab  
+})
+
 // filter empty fields
-const newBooks = [...books].filter(book => book.title !== "")
+const newBooks = [...formatBookKeys].filter(book => book.title !== "")
 
 const bookPath = './books.json'
 const contentPath = './content'
@@ -18,7 +44,7 @@ if (fs.existsSync(bookPath)) {
 rimraf.sync(contentPath);
 
 // create empty content folder to be populated later on
-if (!fs.existsSync(contentPath)){
+if (!fs.existsSync(contentPath)) {
   fs.mkdirSync(contentPath);
 }
 
@@ -47,17 +73,10 @@ newBooks.forEach(book => {
   const output = render(template, realBook)
   const toKebabCase = makeKebab(book.title)
   const directory = `./content/${toKebabCase}`
-  
-  if (fs.existsSync(directory)) return
-  
-  fs.mkdirSync(directory);
-  
-  // const createStream = fs.createWriteStream(`${directory}/index.md`);
-  // createStream.end();
-  
-  // console.log(directory)
-  fs.writeFileSync(`${directory}/index.md`, output)
 
-  // setTimeout(() => {
-  // }, 6000)
+  if (fs.existsSync(directory)) return
+
+  fs.mkdirSync(directory);
+
+  fs.writeFileSync(`${directory}/index.md`, output)
 })
