@@ -47,8 +47,8 @@ const BlogPostTemplate = ({ data, location }) => {
                   {i < categories.length - 1 && categoryList.length > 1 && categoryList[0] !== "" && categoryList[1] !== "" && ', '}
                 </React.Fragment>
               ))}
+              
               {genreRecommendation && <span className="post-tags">, {genreRecommendation}</span>}
-
             </div>
 
             <span className="book-year">{post.frontmatter.publication_date}</span>
